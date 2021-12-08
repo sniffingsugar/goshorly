@@ -9,6 +9,7 @@ import (
 	"git.ucode.space/Phil/goshorly/routes"
 	"git.ucode.space/Phil/goshorly/utils"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/template/html"
 )
 
@@ -33,7 +34,7 @@ func main() {
 
 	app.Get("/:id", routes.ID)
 
-	app.Use(routes.Limiter)
+	app.Use(limiter.New(routes.ConfigLimiter))
 
 	app.Post("/", routes.Posthome)
 
