@@ -11,7 +11,8 @@ import (
 )
 
 type eurl struct {
-	URL string `form:"surl"`
+	CLI bool   `json:"cli"`
+	URL string `json:"surl" form:"surl"`
 }
 
 func Posthome(c *fiber.Ctx) error {
@@ -57,6 +58,12 @@ func Posthome(c *fiber.Ctx) error {
 	}
 
 	fURL := utils.URL + id
+
+	if u.CLI {
+		return c.Status(201).JSON(&fiber.Map{
+			"URL": fURL,
+		})
+	}
 
 	return c.Status(201).Render("views/home", fiber.Map{
 		"URL":            fURL,
