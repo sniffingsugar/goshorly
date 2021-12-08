@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 )
 
-func Limiter(c *fiber.Ctx) {
+func Limiter(c *fiber.Ctx) error {
 	limiter.New(limiter.Config{
 		Max:        10,
 		Expiration: 60 * time.Second,
@@ -21,4 +21,5 @@ func Limiter(c *fiber.Ctx) {
 			})
 		},
 	})
+	return c.Next()
 }
