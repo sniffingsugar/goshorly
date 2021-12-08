@@ -34,7 +34,7 @@ func main() {
 
 	app.Get("/:id", routes.ID)
 
-	app.Use(limiter.New(routes.ConfigLimiter))
+	app.Use(limiter.New(utils.ConfigLimiter))
 
 	app.Post("/", routes.Posthome)
 
