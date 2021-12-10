@@ -54,7 +54,7 @@ func Posthome(c *fiber.Ctx) error {
 	id, err := gonanoid.New(8)
 
 	if err != nil {
-		
+
 		if u.CLI {
 			return c.Status(500).JSON(&fiber.Map{
 				"success": false,
@@ -93,7 +93,7 @@ func Posthome(c *fiber.Ctx) error {
 	if u.CLI {
 		return c.Status(201).JSON(&fiber.Map{
 			"success": true,
-			"URL": fURL,
+			"URL":     fURL,
 		})
 	}
 

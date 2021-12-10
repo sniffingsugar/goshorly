@@ -9,16 +9,16 @@ import (
 func ID(c *fiber.Ctx) error {
 	val, err := db.Client.Get(c.Params("id")).Result()
 
-	if c.Get("CLI") == "1"{
+	if c.Get("CLI") == "1" {
 		if err != nil {
 			return c.Status(404).JSON(&fiber.Map{
 				"error": true,
-				"url":  "URL not found",
+				"url":   "URL not found",
 			})
 		} else {
 			return c.Status(301).JSON(&fiber.Map{
 				"error": false,
-				"url":  val,
+				"url":   val,
 			})
 		}
 	}
