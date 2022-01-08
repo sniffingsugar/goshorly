@@ -9,6 +9,7 @@ services:
       - HTTPS=false             # If you want to use HTTPS
       - PROXY=false             # If you want to use a Reverse Proxy
       - REDIS_URI=redis         # The Redis-URI (name of redis container OOTB)
+      - ENABLE_STATS=true       # Enables the /stats public frontend (Default: true)
     ports:
       - "3000:3000"
     depends_on:

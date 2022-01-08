@@ -32,7 +32,9 @@ func main() {
 
 	app.Get("/", routes.Gethome)
 
-	app.Get("/stats", routes.GetStats)
+	if utils.ESTATS == "true" {
+		app.Get("/stats", routes.GetStats)
+	}
 
 	app.Get("/:id", routes.ID)
 
