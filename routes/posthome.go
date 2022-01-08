@@ -1,9 +1,8 @@
 package routes
 
 import (
-	"fmt"
+	"log"
 	"regexp"
-	"strconv"
 	"time"
 
 	"git.ucode.space/Phil/goshorly/db"
@@ -33,6 +32,8 @@ func Posthome(c *fiber.Ctx) error {
 			"GitCommitShort": utils.GitCommitShort,
 			"GitBranch":      utils.GitBranch,
 			"GitBuild":       utils.GitBuild,
+			"TotalLinks":     db.GetTotalLinks(),
+			"TotalViews":     db.GetTotalViews(),
 		})
 	}
 
@@ -50,6 +51,8 @@ func Posthome(c *fiber.Ctx) error {
 			"GitCommitShort": utils.GitCommitShort,
 			"GitBranch":      utils.GitBranch,
 			"GitBuild":       utils.GitBuild,
+			"TotalLinks":     db.GetTotalLinks(),
+			"TotalViews":     db.GetTotalViews(),
 		})
 	}
 
@@ -69,6 +72,8 @@ func Posthome(c *fiber.Ctx) error {
 			"GitCommitShort": utils.GitCommitShort,
 			"GitBranch":      utils.GitBranch,
 			"GitBuild":       utils.GitBuild,
+			"TotalLinks":     db.GetTotalLinks(),
+			"TotalViews":     db.GetTotalViews(),
 		})
 	}
 
@@ -87,29 +92,18 @@ func Posthome(c *fiber.Ctx) error {
 			"GitCommitShort": utils.GitCommitShort,
 			"GitBranch":      utils.GitBranch,
 			"GitBuild":       utils.GitBuild,
+			"TotalLinks":     db.GetTotalLinks(),
+			"TotalViews":     db.GetTotalViews(),
 		})
 	}
 
 	fURL := utils.URL + id
 
-	val, err := db.Client.Get("created-links").Result()
+	// Increase Total Links into the DB
+	_, err = db.StatsIncreaseTotalLinks()
 
 	if err != nil {
-		fmt.Println("Key not found, creating new one")
-		err2 := db.Client.Set("created-links", "0", 0).Err()
-		if err2 != nil {
-			fmt.Println(err2.Error())
-		}
-		fmt.Println("Set it the first time")
-	} else {
-		i, _ := strconv.Atoi(val)
-		i++
-		err3 := db.Client.Set("created-links", i, 0).Err()
-		if err3 != nil {
-			fmt.Println(err3.Error())
-		} else {
-			fmt.Println("New created value set to " + strconv.Itoa(i))
-		}
+		log.Fatalln(err.Error())
 	}
 
 	if u.CLI {
@@ -124,5 +118,7 @@ func Posthome(c *fiber.Ctx) error {
 		"GitCommitShort": utils.GitCommitShort,
 		"GitBranch":      utils.GitBranch,
 		"GitBuild":       utils.GitBuild,
+		"TotalLinks":     db.GetTotalLinks(),
+		"TotalViews":     db.GetTotalViews(),
 	})
 }

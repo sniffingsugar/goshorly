@@ -32,6 +32,8 @@ func main() {
 
 	app.Get("/", routes.Gethome)
 
+	app.Get("/stats", routes.GetStats)
+
 	app.Get("/:id", routes.ID)
 
 	app.Use(limiter.New(utils.ConfigLimiter))
