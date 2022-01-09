@@ -8,12 +8,7 @@ COPY . .
 
 RUN go get -d -v ./...
 
-# RUN export I_PACKAGE="git.ucode.space/Phil/goshorly/utils" && \
-#     export I_GitCommitShort=$(git rev-parse --short HEAD) && \
-#     export I_GitBranch=$(git rev-parse --abbrev-ref HEAD) && \
-#     go build -a -installsuffix cgo -ldflags "-X $I_PACKAGE.GitCommitShort=$I_GitCommitShort -X $I_PACKAGE.GitBranch=$I_GitBranch" -o app .
-
-RUN go build -a -installsuffix -ldflags="-w -s" -o app .
+RUN chmod +x build-ci.sh && ./build-ci.sh
 
 FROM scratch as production
 WORKDIR /
