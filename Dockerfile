@@ -15,7 +15,7 @@ RUN echo $CI_COMMIT_SHORT_SHA > commit.info
 
 RUN go build -a -installsuffix -ldflags="-w -s -X $I_PACKAGE.GitCommitShort=$CI_COMMIT_SHORT_SHA -X $I_PACKAGE.GitBranch=$CI_COMMIT_BRANCH" -o app .
 
-FROM scratch as production
+FROM alpine as production
 WORKDIR /
 COPY --from=builder /go/src/git.ucode.space/goshorly/app /app
 ENTRYPOINT [ "/app" ]
