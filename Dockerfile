@@ -10,6 +10,9 @@ COPY . .
 
 RUN go get -d -v ./...
 
+RUN echo $I_PACKAGE
+RUN echo $CI_COMMIT_SHORT_SHA
+
 RUN go build -a -installsuffix -ldflags="-w -s -X $I_PACKAGE.GitCommitShort=$CI_COMMIT_SHORT_SHA -X $I_PACKAGE.GitBranch=$CI_COMMIT_BRANCH" -o app .
 
 FROM scratch as production
