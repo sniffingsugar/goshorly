@@ -28,12 +28,12 @@ func Posthome(c *fiber.Ctx) error {
 		}
 
 		return c.Status(500).Render("views/home", fiber.Map{
-			"ERR":            "Parsing Error",
-			"GitCommitShort": utils.GitCommitShort,
-			"GitBranch":      utils.GitBranch,
-			"GitBuild":       utils.GitBuild,
-			"TotalLinks":     db.GetTotalLinks(),
-			"TotalViews":     db.GetTotalViews(),
+			"ERR":                 "Parsing Error",
+			"CI_COMMIT_SHORT_SHA": utils.CI_COMMIT_SHORT_SHA,
+			"CI_COMMIT_BRANCH":    utils.CI_COMMIT_BRANCH,
+			"CI_BUILD":            utils.CI_BUILD,
+			"TotalLinks":          db.GetTotalLinks(),
+			"TotalViews":          db.GetTotalViews(),
 		})
 	}
 
@@ -47,12 +47,12 @@ func Posthome(c *fiber.Ctx) error {
 		}
 
 		return c.Status(424).Render("views/home", fiber.Map{
-			"ERR":            "Invalid URL, please check and try again.",
-			"GitCommitShort": utils.GitCommitShort,
-			"GitBranch":      utils.GitBranch,
-			"GitBuild":       utils.GitBuild,
-			"TotalLinks":     db.GetTotalLinks(),
-			"TotalViews":     db.GetTotalViews(),
+			"ERR":                 "Invalid URL, please check and try again.",
+			"CI_COMMIT_SHORT_SHA": utils.CI_COMMIT_SHORT_SHA,
+			"CI_COMMIT_BRANCH":    utils.CI_COMMIT_BRANCH,
+			"CI_BUILD":            utils.CI_BUILD,
+			"TotalLinks":          db.GetTotalLinks(),
+			"TotalViews":          db.GetTotalViews(),
 		})
 	}
 
@@ -68,12 +68,12 @@ func Posthome(c *fiber.Ctx) error {
 		}
 
 		return c.Status(500).Render("views/home", fiber.Map{
-			"ERR":            err.Error(),
-			"GitCommitShort": utils.GitCommitShort,
-			"GitBranch":      utils.GitBranch,
-			"GitBuild":       utils.GitBuild,
-			"TotalLinks":     db.GetTotalLinks(),
-			"TotalViews":     db.GetTotalViews(),
+			"ERR":                 err.Error(),
+			"CI_COMMIT_SHORT_SHA": utils.CI_COMMIT_SHORT_SHA,
+			"CI_COMMIT_BRANCH":    utils.CI_COMMIT_BRANCH,
+			"CI_BUILD":            utils.CI_BUILD,
+			"TotalLinks":          db.GetTotalLinks(),
+			"TotalViews":          db.GetTotalViews(),
 		})
 	}
 
@@ -88,12 +88,12 @@ func Posthome(c *fiber.Ctx) error {
 		}
 
 		return c.Status(500).Render("views/home", fiber.Map{
-			"ERR":            err.Error(),
-			"GitCommitShort": utils.GitCommitShort,
-			"GitBranch":      utils.GitBranch,
-			"GitBuild":       utils.GitBuild,
-			"TotalLinks":     db.GetTotalLinks(),
-			"TotalViews":     db.GetTotalViews(),
+			"ERR":                 err.Error(),
+			"CI_COMMIT_SHORT_SHA": utils.CI_COMMIT_SHORT_SHA,
+			"CI_COMMIT_BRANCH":    utils.CI_COMMIT_BRANCH,
+			"CI_BUILD":            utils.CI_BUILD,
+			"TotalLinks":          db.GetTotalLinks(),
+			"TotalViews":          db.GetTotalViews(),
 		})
 	}
 
@@ -114,11 +114,11 @@ func Posthome(c *fiber.Ctx) error {
 	}
 
 	return c.Status(201).Render("views/home", fiber.Map{
-		"URL":            fURL,
-		"GitCommitShort": utils.GitCommitShort,
-		"GitBranch":      utils.GitBranch,
-		"GitBuild":       utils.GitBuild,
-		"TotalLinks":     db.GetTotalLinks(),
-		"TotalViews":     db.GetTotalViews(),
+		"URL":                 fURL,
+		"CI_COMMIT_SHORT_SHA": utils.CI_COMMIT_SHORT_SHA,
+		"CI_COMMIT_BRANCH":    utils.CI_COMMIT_BRANCH,
+		"CI_BUILD":            utils.CI_BUILD,
+		"TotalLinks":          db.GetTotalLinks(),
+		"TotalViews":          db.GetTotalViews(),
 	})
 }
