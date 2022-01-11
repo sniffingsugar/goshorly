@@ -3,9 +3,9 @@ package utils
 var (
 	CI_COMMIT_SHORT_SHA string
 	CI_COMMIT_BRANCH    string
-	// TODO: check if Tag build
-	CI_COMMIT_TAG string
-	CI_BUILD      bool
+	CI_COMMIT_TAG       string
+	CI_TAGGED           bool
+	CI_BUILD            bool
 )
 
 func Init_build_vars() {
@@ -13,5 +13,10 @@ func Init_build_vars() {
 		CI_BUILD = false
 	} else {
 		CI_BUILD = true
+	}
+	if CI_COMMIT_TAG == "" {
+		CI_TAGGED = false
+	} else {
+		CI_TAGGED = true
 	}
 }
